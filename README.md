@@ -1,14 +1,22 @@
  KGQAn - A Universal Question-Answering Platform for Knowledge Graphs 
  ---
  - - - - -
+
+Abstract
+-------
+Knowledge from diverse application domains is organized as knowledge graphs (KGs) that are stored in RDF engines accessible in the web via SPARQL endpoints. Expressing a well-formed SPARQL query requires information about the graph structure and the exact URIs of its components, which is impractical for the average user. Question answering (QA) systems assist by translating natural language questions to SPARQL. Existing QA systems are typically based on application-specific human-curated rules, or require prior information, expensive pre-processing and model adaptation for each targeted KG. Therefore, they are hard to generalize to a broad set of applications and KGs. In this paper, we propose KGQAn, a universal QA system that does not need to be tailored to each target KG. Instead of curated rules, KGQAn introduces a novel formalization of question understanding as a text generation problem to convert a question into an intermediate abstract representation via a neural sequence-to-sequence model. We also develop a just-in-time linker that maps at query time the abstract representation to a SPARQL query for a specific KG, using only the publicly accessible APIs and the existing indices of the RDF store, without requiring any pre-processing. Our experiments with several real KGs demonstrate that KGQAn is easily deployed and outperforms by a large margin the state-of-the-art in terms of quality of answers and processing time, especially for arbitrary KGs, unseen during the training.
 ![GitHub Logo](logo/KGQAn%20Architecture.png)
 
-KGQAn is a universal question answering Platform to answer questions on Knowledge graphs. It can deal with different
-knowledge graphs without the need to pre-process on each graph. KGQAn runs in three phases: 1) Question understanding phase
-that construct triple patterns from the question using a Sequence to Sequence model then converts the triple patterns to 
-a phrase graph pattern (PGP). 2) JIT linking phase to link the nodes and edges of the PGP to vertices and predicates from
-the KG without using any pre-created index. 3) Execution and post-filtering phase to create the SPARQL query from the linked
-PGP, execute it and filters the list of answers returned then the answers are sent to the user.
+This repository is dedicated to our paper titled "A Universal Question-Answering Platform for Knowledge Graphs" published in SIGMOD 2023. The full paper can be accessed [here](https://dl.acm.org/doi/10.1145/3588911).
+
+## Availability and Reproducibility
+
+This system has been awarded the Artifact Available, Artifact Evaluated, and Artifact Reproducible badges from ACM SIGMOD ARI (Availability & Reproducibility Initiative)
+ 
+ ![Artifact Available](Figures/artifacts_available_v1_1_2.png) ![Artifact Evaluated](Figures/artifacts_evaluated_reusable_v1_1_2.png) ![Artifact Reproducible](Figures/results_reproduced_v1_1_2.png)
+
+
+
 
 Running KGQAn
 -------------
