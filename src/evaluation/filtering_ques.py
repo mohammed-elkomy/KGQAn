@@ -165,7 +165,7 @@ if __name__ == '__main__':
         try:
             #answers, vertices, predicates, graph = MyKGQAn.ask(question_text=question_text,
                                                               # answer_type=question['answertype'], question_id=question['id'], knowledge_graph='dbpedia')
-            answers, vertices, predicates, _, _, _ = MyKGQAn.ask(question_text=question_text,
+            answers, vertices, predicates, _, _, _, _ = MyKGQAn.ask(question_text=question_text,
                                                                                 question_id=question['id'], knowledge_graph='lc_quad')
         except Exception as e:
             traceback.print_exc()

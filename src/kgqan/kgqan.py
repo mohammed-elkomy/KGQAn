@@ -150,7 +150,7 @@ class KGQAn:
         # if no named entity you should return here
         if len(self.question.query_graph) == 0:
             logger.log_info("[NO Named-entity or NO Relation Detected]")
-            return [], [], [], understanding_end - understanding_start, 0, 0
+            return [], [], [], understanding_end - understanding_start, 0, 0, []
         linking_start = time.time()
         self.extract_possible_V_and_E()
         linking_end = time.time()
@@ -171,6 +171,7 @@ class KGQAn:
             understanding_end - understanding_start,
             linking_end - linking_start,
             execution_end - execution_start,
+            self.question.sparqls
         )
 
     def detect_question_and_answer_type(self):

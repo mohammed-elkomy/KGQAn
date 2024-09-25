@@ -102,7 +102,7 @@ class MyServer(BaseHTTPRequestHandler):
             #if data['question'].lower() == 'when did the boston tea party take place and who was it led by?':
             #    result = self.running_example_answer()
             #else:
-            answers, entities, edges, _, _, _ = MyKGQAn.ask(question_text=data['question'], knowledge_graph=data['knowledge_graph'])
+            answers, entities, edges, _, _, _, _= MyKGQAn.ask(question_text=data['question'], knowledge_graph=data['knowledge_graph'])
             result = self.parse_answer(answers, entities, data['max_answers'], edges)
             self.send_response(200)
             self.send_header("Access-Control-Allow-Origin", "*")
