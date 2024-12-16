@@ -67,7 +67,7 @@ if __name__ == '__main__':
     kgqan_qald9 = {"dataset": {"id": dataset_id}, "questions": []}
     count_arr = []
     dump = []
-    for i, question in enumerate(qald9_testset['questions'][:3]):
+    for i, question in enumerate(qald9_testset['questions']):
 
         # [27, 63, 86, 116, 160, 198]
         # 63- the correct V is Scarface_(rapper) and we get Scarface
@@ -150,7 +150,7 @@ if __name__ == '__main__':
         text = colored(f'[DONE!! in {et - st:.2f} SECs]', 'green', attrs=['bold', 'reverse', 'blink', 'dark'])
         cprint(f"== {text} ==")
 
-    joblib.dump(dump, 'qald9_dump.joblib', compress=5)
+    joblib.dump(dump, 'filtered.joblib', compress=5)
     # break
     text1 = colored(f'total_time = [{total_time:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
     text2 = colored(f'avg time = [{total_time / qc:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
