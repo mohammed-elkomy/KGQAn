@@ -58,7 +58,7 @@ def normalize(answer)
        return answer + ".0"
     else
        #        return URI.unescape(answer.strip)
-       return CGI.unescape(input.strip.downcase)
+       return CGI.unescape(answer.strip.downcase)
     end
 end
 
