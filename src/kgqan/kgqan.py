@@ -73,6 +73,7 @@ class KGQAn:
     form ``127.0.0.1:9600``.
     :param n_max_answers: An int, the maximum number of result items return by KGQAn.
     :rtype: A :class:`KGQAn <KGQAn>`
+    :rtype: A :class:`KGQAn <KGQAn>`
     """
 
     def __init__(

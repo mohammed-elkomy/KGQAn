@@ -179,3 +179,5 @@ src/kgqan/allen/*
 src/allen/*
 src/nltk_cache/
 src/evaluation/output/*
+/out.py
+/push.sh

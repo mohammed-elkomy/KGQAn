@@ -20,7 +20,7 @@ class Seq2SeqModel:
             self.tokenizer = AutoTokenizer.from_pretrained(model_path)
             print("Seq2Seq model loaded...")
         else:
-            print("Invalid Seq2Seq model path")
+            print(f"Invalid Seq2Seq model path {model_path}")
 
 file_dir = os.path.dirname(os.path.abspath(__file__))
 seq2seq_model_path = os.path.join(file_dir, "model")

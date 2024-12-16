@@ -14,16 +14,13 @@ unzip "$data_dir/wiki-news-300d-1M.zip" -d "$data_dir"
 rm "$data_dir/wiki-news-300d-1M.zip" # Remove the zip file
 
 # Local or Docker mode handling
-if [ "$mode" = "local" ] || [ "$mode" = "docker" ]; then
-    echo "Running Copy commands to run locally"
-    
-    # Copy word embeddings
-    word_embedding_path="word_embedding/data"
-    mkdir -p "$word_embedding_path"
-    cp "$data_dir/wiki-news-300d-1M.txt" "$word_embedding_path"
 
-    # Copy KGQAN model files
-    kgqan_model_path="src/kgqan/model/"
-    mkdir -p "$kgqan_model_path"
-    cp -r "$data_dir/output_pred21_8_30/"* "$kgqan_model_path"
-fi
+# Copy word embeddings
+word_embedding_path="word_embedding/data"
+mkdir -p "$word_embedding_path"
+cp "$data_dir/wiki-news-300d-1M.txt" "$word_embedding_path"
+
+# Copy KGQAN model files
+kgqan_model_path="src/kgqan/model/"
+mkdir -p "$kgqan_model_path"
+cp -r "$data_dir/output_pred21_8_30/"* "$kgqan_model_path"
