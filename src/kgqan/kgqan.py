@@ -172,7 +172,8 @@ class KGQAn:
             understanding_end - understanding_start,
             linking_end - linking_start,
             execution_end - execution_start,
-            self.question.sparqls
+            self.question.sparqls,
+            self.question.possible_answers
         )
 
     def detect_question_and_answer_type(self):

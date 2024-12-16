@@ -20,6 +20,7 @@ import traceback
 import csv
 import argparse
 
+import joblib
 from termcolor import colored, cprint
 from itertools import count
 import xml.etree.ElementTree as Et
@@ -30,7 +31,6 @@ from kgqan.kgqan import KGQAn
 file_dir = os.path.dirname(os.path.abspath(__file__))
 
 file_name = os.path.join(file_dir, "qald9/qald-9-test-multilingual.json")
-
 
 if __name__ == '__main__':
     root_element = Et.Element('dataset')
@@ -66,6 +66,7 @@ if __name__ == '__main__':
 
     kgqan_qald9 = {"dataset": {"id": dataset_id}, "questions": []}
     count_arr = []
+    dump = []
     for i, question in enumerate(qald9_testset['questions']):
 
         # [27, 63, 86, 116, 160, 198]
@@ -119,9 +120,10 @@ if __name__ == '__main__':
         # question_text = 'Which movies starring Brad Pitt were directed by Guy Ritchie?'
         # question_text = 'When did the Boston Tea Party take place and led by whom?'
         try:
-            answers, _, _, understanding_time, linking_time, execution_time, _\
+            answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers \
                 = MyKGQAn.ask(question_text=question_text, answer_type=question['answertype'],
                               question_id=question['id'], knowledge_graph='dbpedia')
+            dump.append((answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers))
         except Exception as e:
             traceback.print_exc()
             continue
@@ -148,7 +150,8 @@ if __name__ == '__main__':
         text = colored(f'[DONE!! in {et - st:.2f} SECs]', 'green', attrs=['bold', 'reverse', 'blink', 'dark'])
         cprint(f"== {text} ==")
 
-        # break
+    joblib.dump(dump, 'qald9_dump.joblib', compress=5)
+    # break
     text1 = colored(f'total_time = [{total_time:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
     text2 = colored(f'avg time = [{total_time / qc:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
     cprint(f"== QALD 9 Statistics : {qc} questions, Total Time == {text1}, Average Time == {text2} ")
@@ -174,4 +177,3 @@ if __name__ == '__main__':
     #           encoding='utf-8', mode='w') as rfobj:
     #     json.dump(kgqan_qald9, rfobj)
     #     rfobj.write('\n')
-
