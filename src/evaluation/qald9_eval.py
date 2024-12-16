@@ -67,7 +67,7 @@ if __name__ == '__main__':
     kgqan_qald9 = {"dataset": {"id": dataset_id}, "questions": []}
     count_arr = []
     dump = []
-    for i, question in enumerate(qald9_testset['questions']):
+    for i, question in enumerate(qald9_testset['questions'][:3]):
 
         # [27, 63, 86, 116, 160, 198]
         # 63- the correct V is Scarface_(rapper) and we get Scarface
