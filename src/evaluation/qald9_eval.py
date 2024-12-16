@@ -122,7 +122,7 @@ if __name__ == '__main__':
         try:
             answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers \
                 = MyKGQAn.ask(question_text=question_text, answer_type=question['answertype'],
-                              question_id=question['id'], knowledge_graph='dbpedia')
+                              question_id=question['id'], knowledge_graph='dbpedia', debugging=True)
             dump.append((answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers))
         except Exception as e:
             traceback.print_exc()
