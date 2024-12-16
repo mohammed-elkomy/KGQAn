@@ -124,6 +124,16 @@ if __name__ == '__main__':
                 = MyKGQAn.ask(question_text=question_text, answer_type=question['answertype'],
                               question_id=question['id'], knowledge_graph='dbpedia', debugging=True)
             dump.append((answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers))
+            try:
+                for a in [answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers]:
+                    joblib.dump(a, "a.dmp")
+                    joblib.load("a.dmp")
+            except:
+                traceback.print_exc()
+                exit()
+
+
+
         except Exception as e:
             traceback.print_exc()
             continue
