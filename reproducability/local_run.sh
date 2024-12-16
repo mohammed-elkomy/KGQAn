@@ -2,7 +2,7 @@
 # Move to the KGQAn directory
 cd KGQAn
 # Download the required model and files
-./data_download.sh local
+./data_download.sh
 # Move to the src directory
 cd src
 #Activate the virtual environment

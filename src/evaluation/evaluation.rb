@@ -57,7 +57,8 @@ def normalize(answer)
     if answer =~ /\A\d+\z/
        return answer + ".0"
     else
-       return URI.unescape(answer.strip)
+       #        return URI.unescape(answer.strip)
+       return CGI.unescape(input.strip.downcase)
     end
 end
 
