@@ -114,6 +114,7 @@ class KGQAn:
         n_max_answers: int = None,
         n_max_Vs: int = None,
         n_max_Es: int = None,
+            debugging: bool = False
     ):
         """KGQAn pipeline
 
@@ -165,16 +166,27 @@ class KGQAn:
         ]
         execution_end = time.time()
         logger.log_info(f"\n\n\n\n{'#' * 120}")
-        return (
-            answers,
-            self.question.query_graph.nodes,
-            self.question.query_graph.edges,
-            understanding_end - understanding_start,
-            linking_end - linking_start,
-            execution_end - execution_start,
-            self.question.sparqls,
-            self.question.possible_answers
-        )
+        if debugging:
+            return (
+                answers,
+                self.question.query_graph.nodes,
+                self.question.query_graph.edges,
+                understanding_end - understanding_start,
+                linking_end - linking_start,
+                execution_end - execution_start,
+                self.question.sparqls,
+                self.question.possible_answers
+            )
+        else:
+            return (
+                answers,
+                self.question.query_graph.nodes,
+                self.question.query_graph.edges,
+                understanding_end - understanding_start,
+                linking_end - linking_start,
+                execution_end - execution_start,
+                self.question.sparqls,
+            )
 
     def detect_question_and_answer_type(self):
         properties = ["name", "capital", "country"]
