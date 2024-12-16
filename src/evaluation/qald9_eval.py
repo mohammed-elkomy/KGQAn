@@ -150,7 +150,7 @@ if __name__ == '__main__':
         text = colored(f'[DONE!! in {et - st:.2f} SECs]', 'green', attrs=['bold', 'reverse', 'blink', 'dark'])
         cprint(f"== {text} ==")
 
-    joblib.dump(dump, 'filtered.joblib', compress=5)
+    joblib.dump(dump, 'no-filtered.joblib', compress=5)
     # break
     text1 = colored(f'total_time = [{total_time:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
     text2 = colored(f'avg time = [{total_time / qc:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
