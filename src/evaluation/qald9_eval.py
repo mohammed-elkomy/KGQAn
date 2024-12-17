@@ -32,6 +32,25 @@ file_dir = os.path.dirname(os.path.abspath(__file__))
 
 file_name = os.path.join(file_dir, "qald9/qald-9-test-multilingual.json")
 
+
+def generate_dump_file(dump_data, max_answers, max_Vs, max_Es, limit_VQuery, limit_EQuery, filter_enabled):
+    # Create a formatted string with all parameters
+    filename = (
+        f"config_"
+        f"nMaxAns-{max_answers}_"
+        f"nMaxVs-{max_Vs}_"
+        f"nMaxEs-{max_Es}_"
+        f"nLimVQuery-{limit_VQuery}_"
+        f"nLimEQuery-{limit_EQuery}_"
+        f"filter-{filter_enabled}"
+    )
+
+    # Ensure the filename is filesystem-safe by replacing spaces or special characters if necessary
+    safe_filename = filename.replace(" ", "_").replace(":", "-")
+
+    joblib.dump(dump_data, safe_filename + ".joblib", compress=5)
+
+
 if __name__ == '__main__':
     root_element = Et.Element('dataset')
     root_element.set('id', 'dbpedia-test')
@@ -66,7 +85,7 @@ if __name__ == '__main__':
 
     kgqan_qald9 = {"dataset": {"id": dataset_id}, "questions": []}
     count_arr = []
-    dump = []
+    dump_data = []
     for i, question in enumerate(qald9_testset['questions'][:5]):
 
         # [27, 63, 86, 116, 160, 198]
@@ -120,10 +139,10 @@ if __name__ == '__main__':
         # question_text = 'Which movies starring Brad Pitt were directed by Guy Ritchie?'
         # question_text = 'When did the Boston Tea Party take place and led by whom?'
         try:
-            answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls\
+            answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls \
                 = MyKGQAn.ask(question_text=question_text, answer_type=question['answertype'],
-                              question_id=question['id'], knowledge_graph='dbpedia',)
-            dump.append((question, answers, sparkqls))
+                              question_id=question['id'], knowledge_graph='dbpedia', )
+            dump_data.append((question, answers, sparkqls))
         except Exception as e:
             traceback.print_exc()
             continue
@@ -150,7 +169,7 @@ if __name__ == '__main__':
         text = colored(f'[DONE!! in {et - st:.2f} SECs]', 'green', attrs=['bold', 'reverse', 'blink', 'dark'])
         cprint(f"== {text} ==")
 
-    joblib.dump(dump, 'no-filtered.joblib', compress=5)
+    generate_dump_file(dump_data, max_answers, max_Vs, max_Es, limit_VQuery, limit_EQuery, filter)
     # break
     text1 = colored(f'total_time = [{total_time:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
     text2 = colored(f'avg time = [{total_time / qc:.2f} sec]', 'yellow', attrs=['reverse', 'blink'])
