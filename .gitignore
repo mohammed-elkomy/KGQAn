@@ -181,3 +181,4 @@ src/nltk_cache/
 src/evaluation/output/*
 /out.py
 /push.sh
+/dumps/
