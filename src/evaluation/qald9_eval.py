@@ -120,10 +120,10 @@ if __name__ == '__main__':
         # question_text = 'Which movies starring Brad Pitt were directed by Guy Ritchie?'
         # question_text = 'When did the Boston Tea Party take place and led by whom?'
         try:
-            answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls, possible_answers \
+            answers, nodes, edges, understanding_time, linking_time, execution_time, sparkqls\
                 = MyKGQAn.ask(question_text=question_text, answer_type=question['answertype'],
-                              question_id=question['id'], knowledge_graph='dbpedia', debugging=True)
-            dump.append((answers, sparkqls, possible_answers))
+                              question_id=question['id'], knowledge_graph='dbpedia',)
+            dump.append((question, answers, sparkqls))
         except Exception as e:
             traceback.print_exc()
             continue
