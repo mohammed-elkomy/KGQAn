@@ -76,6 +76,13 @@ if __name__ == '__main__':
     limit_VQuery = 400
     limit_EQuery = 25
 
+
+    max_Vs = 3
+    max_Es = 21
+    max_answers = 41
+    limit_VQuery = 400
+    limit_EQuery = 25
+
     with open(file_name) as f:
         qald9_testset = json.load(f)
     dataset_id = qald9_testset['dataset']['id']
