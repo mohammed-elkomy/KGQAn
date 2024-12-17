@@ -77,8 +77,8 @@ if __name__ == '__main__':
     limit_EQuery = 25
 
 
-    max_Vs = 3
-    max_Es = 21
+    max_Vs = 1
+    max_Es = 41
     max_answers = 41
     limit_VQuery = 400
     limit_EQuery = 25
